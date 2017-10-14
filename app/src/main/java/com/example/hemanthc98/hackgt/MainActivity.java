@@ -43,6 +43,7 @@ import java.security.NoSuchAlgorithmException;
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
                 String pass = makePassword(password.getText().toString());
+                APIInterfacer.addUser(mail, pass);
                 Intent intent = new Intent(MainActivity.this, loginScreen.class);
                 startActivity(intent);
             }
