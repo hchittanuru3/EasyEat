@@ -13,14 +13,17 @@ import android.widget.Spinner;
 
 public class activitiesScreen extends AppCompatActivity {
     final Context context = this;
-    Button add = (Button) findViewById(R.id.add);
-    EditText date = (EditText) findViewById(R.id.date);
-    ListView list = (ListView) findViewById(R.id.list);
+    private Button add;
+    private EditText date;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities_screen);
+        add = (Button) findViewById(R.id.add);
+        date = (EditText) findViewById(R.id.date);
+        list = (ListView) findViewById(R.id.list);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

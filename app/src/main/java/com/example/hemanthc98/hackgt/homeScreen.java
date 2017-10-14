@@ -8,13 +8,15 @@ import android.widget.Button;
 
 public class homeScreen extends AppCompatActivity {
 
-    Button login = (Button) findViewById(R.id.loginb);
-    Button register = (Button) findViewById(R.id.registerb);
+    private Button login;
+    private Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        login = (Button) findViewById(R.id.loginb);
+        register = (Button) findViewById(R.id.registerb);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
