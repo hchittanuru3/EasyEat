@@ -131,21 +131,18 @@ function findBestMealTimes(mealTimeJSON) {
 }
 
 function getTime(time) {
-    var timeString = JSON.parse(time); //example JSON string: "2014-01-01T23:28:56.782Z"
-    var time = new Date(timeString);
-    return time;
+    var timeString = JSON.parse(time); //example JSON string: "23:00"
+    var arr = timeString.split(":");
+    var hours = parseInt(arr[0]) * 60;
+    return hours + arr[1];
 }
 
 function addMintoTime(oldTime, min) {
-	var newTime = new Date();
-	newTime.setTime(oldTime.getTime() + (min * 60000));
-	return newTime;
+	return oldTime + min;
 }
 
 function timeDifference(date1, date2) {
-    var diff = date2 - date1;
-    var min = diff/60;
-    return min;
+    return date2 - date1;
 }
 
 function compareTimes(date1, date2) {
