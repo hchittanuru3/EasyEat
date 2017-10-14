@@ -18,11 +18,11 @@ app.use(bodyParser());
 // Authenticating to Yelp API
 request.post(
     'https://api.yelp.com/oauth2/token',
-    { json: 
-    	{ 
+    { json:
+    	{
     		client_id: process.env.YELP_API_KEY,
     		client_secret: process.env.YELP_SECRET_KEY
-    	} 
+    	}
 	},
     function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -83,106 +83,109 @@ app.post('/mealTimes', function(req, res) {
 
 } */
 function findBestMealTimes(mealTimeJSON) {
-	const range = 30;
+  const range = 30;
 	var bStart = getTime(mealTimeJSON.PreferredTimes.Breakfast.StartTime);
-	bStart = addMintoTime(bStart, -range);
+	bStart = bStart - range;
 	var bEnd = getTime(mealTimeJSON.PreferredTimes.Breakfast.EndTime);
-	bEnd = addMintoTime(bEnd, range);
+	bEnd = bEnd + range;
 
 	var lStart = getTime(mealTimeJSON.PreferredTimes.Lunch.StartTime);
-	lStart = addMintoTime(lStart, -range);
+	lStart = lStart - range;
 	var lEnd = getTime(mealTimeJSON.PreferredTimes.Lunch.EndTime);
-	lEnd = addMintoTime(lEnd, range);
+	lEnd = lEnd + range;
 
 	var dStart = getTime(mealTimeJSON.PreferredTimes.Dinner.StartTime);
-	dStart = addMintoTime(dStart, -range);
+	dStart = dStart - range;
 	var dEnd = getTime(mealTimeJSON.PreferredTimes.Dinner.EndTime);
-	dEnd = addMintoTime(dEnd, range);
+	dEnd = dEnd + range;
 
 	var resBStart = null, resBEnd = null, resLStart = null, resLEnd = null,
 			resDStart = null, resDEnd = null;
 
 	// find max time interval within range for preferred breakfast time
-	activities = mealTimeJSON.Activities;
+	activities = mealTimeJSON.activities;
 	var currEndTime, currStartTime;
 	for (var i = 0; i + 1 < activities.length; i++) {
-			currEndTime = getTime(activities[i].endTime);
-		  currStartTime = getTime(activities[i + 1].StartTime);
-			if (compareTimes(currEndTime, bStart) >= 0 && compareTimes(currStartTime, bEnd) <= 0) {
+      if (i == -1) {
+          currEndTime = bStart;
+      } else {
+          currEndTime = getTime(activities[i].endTime);
+      }
+		    currStartTime = getTime(activities[i + 1].startTime);
+			if (currEndTime - bStart >= 0 && currStartTime - bEnd <= 0) {
 				if (resBStart == null && resBEnd == null) {
 					resBStart = currEndTime;
 					resBEnd = currStartTime;
-				} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resBEnd, resBStart)) {
+				} else if ((currEndTime - currStartTime) > (resBEnd - resBStart)) {
 						resBStart = currEndTime;
 						resBEnd = currStartTime;
 				}
-			} else if (compareTimes(currEndTime, lStart) >= 0 && compareTimes(currStartTime, lEnd) <= 0) {
-				if (resLStart == null && resLEnd == null) {
+			} else if (currEndTime - lStart >= 0 && currStartTime - lEnd <= 0) {
+				if (resLStart === null && resLEnd === null) {
 					resLStart = currEndTime;
 					resLEnd = currStartTime;
-				} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resLEnd, resLStart)) {
+				} else if ((currEndTime - currStartTime) > (resLEnd - resLStart)) {
 					resLStart = currEndTime;
 					resLEnd = currStartTime;
 				}
 
-			} else if (compareTimes(currEndTime, dStart) >= 0 && compareTimes(currStartTime, dEnd) <= 0) {
-					if (resDStart == null && resDEnd == null) {
+			} else if (currEndTime - dStart >= 0 && currStartTime - dEnd <= 0) {
+					if (resDStart === null && resDEnd === null) {
 						resDStart = currEndTime;
 						resDEnd = currStartTime;
-					} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resDEnd, resDStart)) {
+					} else if ((currEndTime - currStartTime) > (resDEnd - resDStart)) {
 						resDStart = currEndTime;
 						resDEnd = currStartTime;
 					}
 			}
 	}
 
+  if (resDStart == null) {
+    //find the first activity that is in the dinner range
+    for (var j = 0; j < activities.length; j++) {
+      currStartTime = getTime(activities[i].startTime);
+      if (currStartTime > dStart) {
+          resDStart = dStart;
+          resDEnd = currStartTime;
+      }
+    }
+  }
+
 	var resJSON = {
 		'Breakfast': {
-			'StartTime': resBStart,
-			'EndTime': resBEnd,
+			'StartTime': minToString(resBStart),
+			'EndTime': minToString(resBEnd),
 		},
 		'Lunch': {
-			'StartTime': resLStart,
-			'EndTime': resLEnd
+			'StartTime': minToString(resLStart),
+			'EndTime': minToString(resLEnd)
 		},
 		'Dinner': {
-			'StartTime': resDStart,
-			'EndTime': resDEnd
+			'StartTime': minToString(resDStart),
+			'EndTime': minToString(resDEnd)
 		}
 	}
 	return resJSON;
 }
 
-function getTime(time) {
-    var timeString = JSON.parse(time); //example JSON string: "23:00"
+function getTime(timeString) { //example string: "23:00"
     var arr = timeString.split(":");
     var hours = parseInt(arr[0]) * 60;
-    return hours + arr[1];
+    var min = parseInt(arr[1]);
+    return hours + min;
 }
 
 function minToString(min) {
-    if (min == null) {
+    if (min === null) {
         return "No time available.";
     } else {
         var hours = min/60;
         var min = min%60;
     }
+    if (min == 0) {
+      min = "00";
+    } else if (min < 10) {
+      min = "0" + min;
+    }
     return hours + ":" + min;
-}
-
-function addMintoTime(oldTime, min) {
-	return oldTime + min;
-}
-
-function timeDifference(date1, date2) {
-    return date2 - date1;
-}
-
-function compareTimes(date1, date2) {
-	if (timeDifference(date1, date2) < 0) {
-		return -1;
-	} else if (timeDifference(date1, date2) == 0) {
-		return 0;
-	return 1;
-
 }
