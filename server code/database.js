@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	name:  String,
@@ -34,13 +34,11 @@ module.exports = {
 	instantiate: function() {
 		var uri = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD + '@ds121015.mlab.com:21015/hackgt';
 		mongoose.Promise = global.Promise;
-		mongoose.connect(uri);
+		mongoose.connect(uri, {useMongoClient: true}, function(error) {
+			console.log(error);
+		});
 		
 		var db = mongoose.connection;
 		return db;
-	}
-
-	addUser: function() {
-		var 
 	}
 }
