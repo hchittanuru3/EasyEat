@@ -1,3 +1,4 @@
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4dPXTHVxcH24W58mBFS-q3v-0TqliwLM&callback=initMap"
-  type="text/javascript"></script>
+var googleMapsClient = require('@google/maps').createClient({
+    key: 'AIzaSyAWoboLzDhMPA93uFb6kFmAlIvK91BGddk'
+})
 
