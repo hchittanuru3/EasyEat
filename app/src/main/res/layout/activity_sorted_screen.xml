@@ -35,7 +35,6 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="10dp"
-        android:prompt="Sort By:"
         android:id="@+id/spinner">
 
     </Spinner>
