@@ -1,6 +1,7 @@
 package com.example.hemanthc98.hackgt;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,18 +14,21 @@ import java.security.NoSuchAlgorithmException;
 
     public class MainActivity extends AppCompatActivity {
 
-    Button register = (Button) findViewById(R.id.register);
-    CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox);
-    EditText name = (EditText) findViewById(R.id.name);
-    EditText email = (EditText) findViewById(R.id.email);
-    EditText password = (EditText) findViewById(R.id.password);
+    private Button register;
+    private CheckBox checkBox;
+    private EditText name;
+    private EditText email;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        register = (Button) findViewById(R.id.register);
+        checkBox = (CheckBox) findViewById(R.id.checkbox);
+        name = (EditText) findViewById(R.id.name);
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,18 +37,19 @@ import java.security.NoSuchAlgorithmException;
                     String message = "You must agree to terms and conditions before proceeding.";
                     new AlertDialog.Builder(MainActivity.this)
                                    .setMessage(message)
-                                   .setTitle(title);
-
-
+                                   .setTitle(title)
+                                   .setPositiveButton("OK", null);
                 }
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
                 String pass = makePassword(password.getText().toString());
+                Intent intent = new Intent(MainActivity.this, loginScreen.class);
+                startActivity(intent);
             }
         });
     }
 
-    private String makePassword(String pass) {
+    public static String makePassword(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(pass.getBytes());
