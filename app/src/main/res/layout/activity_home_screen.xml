@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hemanthc98.hackgt.homeScreen">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="75dp"/>
+
+
+    <Button
+        android:id="@+id/registerb"
+        android:layout_width="200dp"
+        android:layout_height="66dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Log In"
+        tools:background="@android:color/black"
+        tools:textColor="@android:color/white"
+        tools:textSize="20sp" />
+
+    <Button
+        android:id="@+id/loginb"
+        android:layout_width="200dp"
+        android:layout_height="66dp"
+        tools:text="Register"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:background="@android:color/black"
+        tools:textColor="@android:color/white"
+        tools:textSize="20sp"/>
+
+
+
+</LinearLayout>
