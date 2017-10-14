@@ -14,18 +14,21 @@ import java.security.NoSuchAlgorithmException;
 
     public class MainActivity extends AppCompatActivity {
 
-    Button register = (Button) findViewById(R.id.register);
-    CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox);
-    EditText name = (EditText) findViewById(R.id.name);
-    EditText email = (EditText) findViewById(R.id.email);
-    EditText password = (EditText) findViewById(R.id.password);
+    private Button register;
+    private CheckBox checkBox;
+    private EditText name;
+    private EditText email;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        register = (Button) findViewById(R.id.register);
+        checkBox = (CheckBox) findViewById(R.id.checkbox);
+        name = (EditText) findViewById(R.id.name);
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
