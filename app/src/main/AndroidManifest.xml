@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".homeScreen" />
-        <activity android:name=".loginScreen"></activity>
+        <activity android:name=".loginScreen" />
+        <activity android:name=".TimesScreen"></activity>
     </application>
 
 </manifest>
