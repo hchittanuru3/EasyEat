@@ -9,8 +9,27 @@ const session = require('express-session');
 
 const request = require('request');
 
+// For loading API keys with dotenv
+require('dotenv').config()
+
 app.use(cookieParser());
 app.use(bodyParser());
+
+// Authenticating to Yelp API
+request.post(
+    'https://api.yelp.com/oauth2/token',
+    { json: 
+    	{ 
+    		client_id: process.env.YELP_API_KEY,
+    		client_secret: process.env.YELP_SECRET_KEY
+    	} 
+	},
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        }
+    }
+);
 
 app.listen(port, function() {
 	console.log('Express server listening on port 8081');
