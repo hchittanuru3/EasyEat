@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.hemanthc98.hackgt.MainActivity">
+    tools:context="com.example.hemanthc98.hackgt.TimesScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_height="75dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="@string/app_name"
+            android:text="Selection"
             />
     </LinearLayout>
 
@@ -34,84 +34,64 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:text="Name"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"/>
+        android:text="Breakfast"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:theme="@android:style/Theme.Light"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/name"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:onClick="breakfastClick"
+        android:clickable="true"
+        android:layout_marginBottom="20dp"/>
+
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginLeft="15dp"
-        android:text="Email"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"
+        android:text="Lunch"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:theme="@android:style/Theme.Light"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/email"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:onClick="lunchClick"
+        android:clickable="true"
+        android:layout_marginBottom="20dp"/>
+
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginLeft="15dp"
-        android:text="Password"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"/>
+        android:text="Dinner"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:inputType="textPassword"
-        android:theme="@android:style/Theme.Light"
-        android:id="@+id/password"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="I agree to the terms and conditions."
-            android:layout_marginLeft="15dp"
-            android:textSize="20dp"/>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/checkbox"/>
-
-    </LinearLayout>
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:onClick="dinnerClick"
+        android:clickable="true"
+        android:layout_marginBottom="20dp"/>
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/plan"
         android:layout_width="200dp"
         android:layout_height="66dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:background="@android:color/black"
-        android:text="Register"
+        android:text="Plan"
         android:textColor="@android:color/white"
         android:textSize="20dp" />
 
