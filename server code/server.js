@@ -37,7 +37,9 @@ Activities JSON {'Activities': [{
 	}
 } */
 app.post('/mealTimes', function(req, res) {
-
+	//req.body.schedule is the Activities JSON passed in the post request
+	mealTimeJSON = findBestMealTimes(req.body.schedule);
+	res.json(mealTimeJSON);
 });
 
 /**
