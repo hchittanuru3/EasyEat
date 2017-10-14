@@ -137,6 +137,16 @@ function getTime(time) {
     return hours + arr[1];
 }
 
+function minToString(min) {
+    if (min == null) {
+        return "No time available.";
+    } else {
+        var hours = min/60;
+        var min = min%60;
+    }
+    return hours + ":" + min;
+}
+
 function addMintoTime(oldTime, min) {
 	return oldTime + min;
 }
