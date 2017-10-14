@@ -60,21 +60,75 @@ app.post('/mealTimes', function(req, res) {
 
 } */
 function findBestMealTimes(mealTimeJSON) {
-	const range = 30
-	bStart = getTime(mealTimeJSON.PreferredTimes.Breakfast.StartTime);
-	bEnd = getTime(mealTimeJSON.PreferredTimes.Breakfast.EndTime);
+	const range = 30;
+	var bStart = getTime(mealTimeJSON.PreferredTimes.Breakfast.StartTime);
+	bStart = addMintoTime(bStart, -range);
+	var bEnd = getTime(mealTimeJSON.PreferredTimes.Breakfast.EndTime);
+	bEnd = addMintoTime(bEnd, range);
 
-	lStart = getTime(mealTimeJSON.PreferredTimes.Lunch.StartTime);
-	lEnd = getTime(mealTimeJSON.PreferredTimes.Lunch.EndTime);
+	var lStart = getTime(mealTimeJSON.PreferredTimes.Lunch.StartTime);
+	lStart = addMintoTime(lStart, -range);
+	var lEnd = getTime(mealTimeJSON.PreferredTimes.Lunch.EndTime);
+	lEnd = addMintoTime(lEnd, range);
 
-	dStart = getTime(mealTimeJSON.PreferredTimes.Dinner.StartTime);
-	dEnd = getTime(mealTimeJSON.PreferredTimes.Dinner.EndTime);
+	var dStart = getTime(mealTimeJSON.PreferredTimes.Dinner.StartTime);
+	dStart = addMintoTime(dStart, -range);
+	var dEnd = getTime(mealTimeJSON.PreferredTimes.Dinner.EndTime);
+	dEnd = addMintoTime(dEnd, range);
 
-	// find max time interval within range for preferred breakfast times
+	var resBStart = null, resBEnd = null, resLStart = null, resLEnd = null,
+			resDStart = null, resDEnd = null;
+
+	// find max time interval within range for preferred breakfast time
 	activities = mealTimeJSON.Activities;
-	for (var activity in activities) {
+	var currEndTime, currStartTime;
+	for (var i = 0; i + 1 < activities.length; i++) {
+			currEndTime = getTime(activities[i].endTime);
+		  currStartTime = getTime(activities[i + 1].StartTime);
+			if (compareTimes(currEndTime, bStart) >= 0 && compareTimes(currStartTime, bEnd) <= 0) {
+				if (resBStart == null && resBEnd == null) {
+					resBStart = currEndTime;
+					resBEnd = currStartTime;
+				} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resBEnd, resBStart)) {
+						resBStart = currEndTime;
+						resBEnd = currStartTime;
+				}
+			} else if (compareTimes(currEndTime, lStart) >= 0 && compareTimes(currStartTime, lEnd) <= 0) {
+				if (resLStart == null && resLEnd == null) {
+					resLStart = currEndTime;
+					resLEnd = currStartTime;
+				} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resLEnd, resLStart)) {
+					resLStart = currEndTime;
+					resLEnd = currStartTime;
+				}
 
+			} else if (compareTimes(currEndTime, dStart) >= 0 && compareTimes(currStartTime, dEnd) <= 0) {
+					if (resDStart == null && resDEnd == null) {
+						resDStart = currEndTime;
+						resDEnd = currStartTime;
+					} else if (timeDifference(currEndTime, currStartTime) > timeDifference(resDEnd, resDStart)) {
+						resDStart = currEndTime;
+						resDEnd = currStartTime;
+					}
+			}
 	}
+
+	var resJSON = {
+		'Breakfast': {
+			'StartTime': resBStart,
+			'EndTime': resBEnd,
+		},
+		'Lunch': {
+			'StartTime': resLStart,
+			'EndTime': resLEnd
+		},
+		'Dinner': {
+			'StartTime': resDStart,
+			'EndTime': resDEnd
+		}
+	}
+	return resJSON;
+}
 
 function getTime(time) {
     var timeString = JSON.parse(time); //example JSON string: "2014-01-01T23:28:56.782Z"
@@ -82,8 +136,23 @@ function getTime(time) {
     return time;
 }
 
+function addMintoTime(oldTime, min) {
+	var newTime = new Date();
+	newTime.setTime(oldTime.getTime() + (min * 60000));
+	return newTime;
+}
+
 function timeDifference(date1, date2) {
     var diff = date2 - date1;
     var min = diff/60;
     return min;
+}
+
+function compareTimes(date1, date2) {
+	if (timeDifference(date1, date2) < 0) {
+		return -1;
+	} else if (timeDifference(date1, date2) == 0) {
+		return 0;
+	return 1;
+
 }
