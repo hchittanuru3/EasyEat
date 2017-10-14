@@ -45,6 +45,7 @@
         android:layout_marginRight="10dp"
         android:theme="@android:style/Theme.Light"
         android:layout_marginBottom="30dp"
+        android:inputType="textPassword"
         android:id="@+id/username"/>
 
     <TextView
