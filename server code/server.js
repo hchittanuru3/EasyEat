@@ -20,7 +20,7 @@ const request = require('request');
 const yelp = require('./yelp');
 
 // Extra crap for dealing with times and parsing that
-const time = require('./time');
+//const time = require('./time');
 
 // For loading API keys with dotenv
 require('dotenv').config()
