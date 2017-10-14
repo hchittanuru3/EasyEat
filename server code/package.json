@@ -1,0 +1,21 @@
+{
+  "name": "HackGT",
+  "version": "0.0.1",
+  "main": "server.js",
+  "engines": {
+    "node": "7.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/hchittanuru3/HackGT)"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "request": "^2.83.0"
+  }
+}
