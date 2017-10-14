@@ -3,16 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HackGT.iml" filepath="$PROJECT_DIR$/HackGT.iml" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <module fileurl="file://$PROJECT_DIR$/HackGT.iml" filepath="$PROJECT_DIR$/HackGT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
->>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
-=======
-      <module fileurl="file://$PROJECT_DIR$/HackGT.iml" filepath="$PROJECT_DIR$/HackGT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
->>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
