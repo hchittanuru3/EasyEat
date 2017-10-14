@@ -60,10 +60,22 @@ app.post('/mealTimes', function(req, res) {
 
 } */
 function findBestMealTimes(mealTimeJSON) {
+	const range = 30
+	bStart = getTime(mealTimeJSON.PreferredTimes.Breakfast.StartTime);
+	bEnd = getTime(mealTimeJSON.PreferredTimes.Breakfast.EndTime);
+
+	lStart = getTime(mealTimeJSON.PreferredTimes.Lunch.StartTime);
+	lEnd = getTime(mealTimeJSON.PreferredTimes.Lunch.EndTime);
+
+	dStart = getTime(mealTimeJSON.PreferredTimes.Dinner.StartTime);
+	dEnd = getTime(mealTimeJSON.PreferredTimes.Dinner.EndTime);
+
+	// find max time interval within range for preferred breakfast times
+	activities = mealTimeJSON.Activities;
+	for (var activity in activities) {
+		
+	}
 
 
-}
-
-function stringToTimeDecimal(time) {
 
 }
