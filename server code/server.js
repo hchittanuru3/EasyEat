@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const mongo = require('mongodb')
 
 // Setting up the MongoDB database
 const mongoose = require('mongoose');
@@ -61,6 +62,33 @@ app.post('/mealTimes', function(req, res) {
 	mealTimeJSON = findBestMealTimes(req.body.schedule);
 	res.json(mealTimeJSON);
 });
+
+app.post('/register/:username/:password', function(req,res) {
+	s = {"name": req.username, "password": req.password, "schedule": []}
+	db.users.insert(s)
+});
+
+app.get('/signin/:username/:password', function(req, res) {
+	if (db.users.find({name: req.username} != None)) {
+		if(db.users.find({name: req.username}).password.equals(req.password)) {
+			res.json({Message: "Authenticated"});
+		} else {
+			res.json({Message: "Error"});
+		}
+	} else {
+		res.json({Message: "Error"});
+	}
+});
+
+app.get('/:username/profile', function(req, res){
+	jsonObject = db.users.find({query: {name: req.username}});
+	res.json(jsonObject);
+});
+
+// /register/:username/:password --> post request and creates a user collection that only has username, password, schedule array = [] that is empty
+// Assumes that all usernames are unique.  We didn't account for that.
+// /:username/:password --> authentification = checks if username exists, then checks if password exists
+// /:username/profile --> finds the user in the Mongo db and returns the json object for that user.
 
 /**
 	Takes in an Activities JSON object
