@@ -19,11 +19,9 @@
         <activity android:name=".homeScreen" />
         <activity android:name=".loginScreen" />
         <activity android:name=".TimesScreen" />
-<<<<<<< HEAD
         <activity android:name=".preferredTimes"></activity>
-=======
-        <activity android:name=".activitiesScreen"></activity>
->>>>>>> 566d4d291a5febca82515a719bd2d5388851c5f3
+        <activity android:name=".activitiesScreen" />
+        <activity android:name=".sortedScreen"></activity>
     </application>
 
 </manifest>
