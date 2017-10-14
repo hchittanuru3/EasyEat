@@ -1,0 +1,25 @@
+{
+  "name": "HackGT",
+  "version": "0.0.1",
+  "description": "Android app to find best places to eat given times and money",
+  "main": "server.js",
+  "engines": {
+    "node": "7.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/hchittanuru3/HackGT)"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Matt, Hemanth Chittanuru, Austin Cho, Justin Kelly, Rahul Zhade",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "request": "^2.83.0"
+  }
+}
