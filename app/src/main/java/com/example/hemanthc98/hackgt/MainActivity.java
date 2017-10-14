@@ -33,7 +33,7 @@ import java.security.NoSuchAlgorithmException;
                     String message = "You must agree to terms and conditions before proceeding.";
                     new AlertDialog.Builder(MainActivity.this)
                                    .setMessage(message)
-                                   .setTitle(title)
+                                   .setTitle(title);
 
 
                 }
@@ -57,6 +57,6 @@ import java.security.NoSuchAlgorithmException;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
+        return null;
     }
 }
