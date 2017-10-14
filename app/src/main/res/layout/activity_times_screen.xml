@@ -45,7 +45,8 @@
         android:layout_marginRight="15dp"
         android:onClick="breakfastClick"
         android:clickable="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:id="@+id/breakfastclick"/>
 
 
     <TextView
@@ -64,7 +65,8 @@
         android:layout_marginRight="15dp"
         android:onClick="lunchClick"
         android:clickable="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:id="@+id/lunchclick"/>
 
 
     <TextView
@@ -73,7 +75,8 @@
         android:layout_marginLeft="15dp"
         android:text="Dinner"
         android:textSize="20sp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -82,7 +85,8 @@
         android:layout_marginRight="15dp"
         android:onClick="dinnerClick"
         android:clickable="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:id="@+id/dinnerclick"/>
 
     <Button
         android:id="@+id/plan"
@@ -93,7 +97,7 @@
         android:background="@android:color/black"
         android:text="Plan"
         android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textSize="20dp"/>
 
 
 
