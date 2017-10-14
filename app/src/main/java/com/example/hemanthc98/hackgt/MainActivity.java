@@ -1,5 +1,6 @@
 package com.example.hemanthc98.hackgt;
 
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!checkBox.isChecked()) {
+                    String title = "Error";
+                    String message = "You must agree to terms and conditions before proceeding.";
+                    new AlertDialog.Builder(MainActivity.this)
+                                   .setMessage(message)
+                                   .setTitle(title)
+
+
+                }
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
                 String pass = makePassword(password.getText().toString());
