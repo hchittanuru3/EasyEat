@@ -30,6 +30,7 @@
             />
     </LinearLayout>
 
+<<<<<<< HEAD
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -100,6 +101,55 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+=======
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Name"
+        android:textSize="17sp"
+        android:layout_marginBottom="5dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:theme="@android:style/Theme.Light"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:text="Email"
+        android:textSize="17sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:theme="@android:style/Theme.Light"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/email"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:text="Password"
+        android:textSize="17sp"
+        android:layout_marginBottom="5dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+>>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -139,6 +189,9 @@
         android:textSize="20dp" />
 
 
+<<<<<<< HEAD
+>>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
+=======
 >>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
 
 </LinearLayout>
