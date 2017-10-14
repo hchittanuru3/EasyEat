@@ -6,8 +6,21 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const mongo = require('mongodb')
 
+// Setting up the MongoDB database
+const mongoose = require('mongoose');
+
+const database = require('./database');
+var db = database.instantiate();
+
+// For authenticating to APIs
 const request = require('request');
+
+const yelp = require('./yelp');
+
+// Extra crap for dealing with times and parsing that
+const time = require('./time');
 
 // For loading API keys with dotenv
 require('dotenv').config()
@@ -15,25 +28,12 @@ require('dotenv').config()
 app.use(cookieParser());
 app.use(bodyParser());
 
-// Authenticating to Yelp API
-request.post(
-    'https://api.yelp.com/oauth2/token',
-    { json:
-    	{
-    		client_id: process.env.YELP_API_KEY,
-    		client_secret: process.env.YELP_SECRET_KEY
-    	}
-	},
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body)
-        }
-    }
-);
-
 app.listen(port, function() {
 	console.log('Express server listening on port 8081');
 });
+
+// Authenticating to Yelp
+yelp.authenticate();
 
 /** Request should be a JSON object in the form of:
 Activities JSON {'Activities': [{
@@ -62,6 +62,33 @@ app.post('/mealTimes', function(req, res) {
 	mealTimeJSON = findBestMealTimes(req.body.schedule);
 	res.json(mealTimeJSON);
 });
+
+app.post('/register/:username/:password', function(req,res) {
+	s = {"name": req.username, "password": req.password, "schedule": []}
+	db.users.insert(s)
+});
+
+app.get('/signin/:username/:password', function(req, res) {
+	if (db.users.find({name: req.username} != None)) {
+		if(db.users.find({name: req.username}).password.equals(req.password)) {
+			res.json({Message: "Authenticated"});
+		} else {
+			res.json({Message: "Error"});
+		}
+	} else {
+		res.json({Message: "Error"});
+	}
+});
+
+app.get('/:username/profile', function(req, res){
+	jsonObject = db.users.find({query: {name: req.username}});
+	res.json(jsonObject);
+});
+
+// /register/:username/:password --> post request and creates a user collection that only has username, password, schedule array = [] that is empty
+// Assumes that all usernames are unique.  We didn't account for that.
+// /:username/:password --> authentification = checks if username exists, then checks if password exists
+// /:username/profile --> finds the user in the Mongo db and returns the json object for that user.
 
 /**
 	Takes in an Activities JSON object
@@ -166,26 +193,4 @@ function findBestMealTimes(mealTimeJSON) {
 		}
 	}
 	return resJSON;
-}
-
-function getTime(timeString) { //example string: "23:00"
-    var arr = timeString.split(":");
-    var hours = parseInt(arr[0]) * 60;
-    var min = parseInt(arr[1]);
-    return hours + min;
-}
-
-function minToString(min) {
-    if (min === null) {
-        return "No time available.";
-    } else {
-        var hours = min/60;
-        var min = min%60;
-    }
-    if (min == 0) {
-      min = "00";
-    } else if (min < 10) {
-      min = "0" + min;
-    }
-    return hours + ":" + min;
 }

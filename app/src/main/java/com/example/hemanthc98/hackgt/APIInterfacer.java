@@ -61,7 +61,9 @@ public class APIInterfacer {
 
     //GET request to /:username/:date
     // Re
-    public static JSONObject getMealIntervals(String username, String date) {}
+    public static JSONObject getMealIntervals(String username, String date) {
+        return null;
+    }
 
     public static boolean authenticateUser(String username, String password) {
         String urlString = baseURL + "username=" + username + "/" + "password=" + password;
@@ -103,7 +105,7 @@ public class APIInterfacer {
                 String jsonString = sb.toString();
                 System.out.println("JSON: " + jsonString);
 
-                return new JSONObject(jsonString)
+                return new JSONObject(jsonString);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
