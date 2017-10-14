@@ -33,9 +33,8 @@ import java.security.NoSuchAlgorithmException;
                     String message = "You must agree to terms and conditions before proceeding.";
                     new AlertDialog.Builder(MainActivity.this)
                                    .setMessage(message)
-                                   .setTitle(title);
-
-
+                                   .setTitle(title)
+                                   .setPositiveButton("OK", null);
                 }
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
