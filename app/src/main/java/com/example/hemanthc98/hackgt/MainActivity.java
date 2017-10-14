@@ -1,6 +1,7 @@
 package com.example.hemanthc98.hackgt;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,11 +40,13 @@ import java.security.NoSuchAlgorithmException;
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
                 String pass = makePassword(password.getText().toString());
+                Intent intent = new Intent(MainActivity.this, loginScreen.class);
+                startActivity(intent);
             }
         });
     }
 
-    private String makePassword(String pass) {
+    public static String makePassword(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(pass.getBytes());
