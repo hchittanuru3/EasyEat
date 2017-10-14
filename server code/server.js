@@ -73,9 +73,17 @@ function findBestMealTimes(mealTimeJSON) {
 	// find max time interval within range for preferred breakfast times
 	activities = mealTimeJSON.Activities;
 	for (var activity in activities) {
-		
+
 	}
 
+function getTime(time) {
+    var timeString = JSON.parse(time); //example JSON string: "2014-01-01T23:28:56.782Z"
+    var time = new Date(timeString);
+    return time;
+}
 
-
+function timeDifference(date1, date2) {
+    var diff = date2 - date1;
+    var min = diff/60;
+    return min;
 }
