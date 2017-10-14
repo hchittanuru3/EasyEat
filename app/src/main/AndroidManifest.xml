@@ -20,8 +20,9 @@
         <activity android:name=".loginScreen" />
         <activity android:name=".TimesScreen" />
         <activity android:name=".preferredTimes"></activity>
-        <activity android:name=".activitiesScreen" />
+        <activity android:name=".activitiesScreen"></activity>
         <activity android:name=".sortedScreen"></activity>
+
     </application>
 
 </manifest>
