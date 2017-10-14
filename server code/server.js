@@ -7,7 +7,19 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+// Setting up the MongoDB database
+const mongoose = require('mongoose');
+
+const database = require('./database');
+var db = database.instantiate();
+
+// For authenticating to APIs
 const request = require('request');
+
+const yelp = require('./yelp');
+
+// Extra crap for dealing with times and parsing that 
+const time = require('./time');
 
 // For loading API keys with dotenv
 require('dotenv').config()
@@ -15,25 +27,12 @@ require('dotenv').config()
 app.use(cookieParser());
 app.use(bodyParser());
 
-// Authenticating to Yelp API
-request.post(
-    'https://api.yelp.com/oauth2/token',
-    { json: 
-    	{ 
-    		client_id: process.env.YELP_API_KEY,
-    		client_secret: process.env.YELP_SECRET_KEY
-    	} 
-	},
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body)
-        }
-    }
-);
-
 app.listen(port, function() {
 	console.log('Express server listening on port 8081');
 });
+
+// Authenticating to Yelp
+yelp.authenticate();
 
 /** Request should be a JSON object in the form of:
 Activities JSON {'Activities': [{
@@ -151,38 +150,4 @@ function findBestMealTimes(mealTimeJSON) {
 		}
 	}
 	return resJSON;
-}
-
-function getTime(time) {
-    var timeString = JSON.parse(time); //example JSON string: "23:00"
-    var arr = timeString.split(":");
-    var hours = parseInt(arr[0]) * 60;
-    return hours + arr[1];
-}
-
-function minToString(min) {
-    if (min == null) {
-        return "No time available.";
-    } else {
-        var hours = min/60;
-        var min = min%60;
-    }
-    return hours + ":" + min;
-}
-
-function addMintoTime(oldTime, min) {
-	return oldTime + min;
-}
-
-function timeDifference(date1, date2) {
-    return date2 - date1;
-}
-
-function compareTimes(date1, date2) {
-	if (timeDifference(date1, date2) < 0) {
-		return -1;
-	} else if (timeDifference(date1, date2) == 0) {
-		return 0;
-	return 1;
-
 }
