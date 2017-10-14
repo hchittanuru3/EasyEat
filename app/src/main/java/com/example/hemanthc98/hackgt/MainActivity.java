@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String str = name.getText().toString();
                 String mail = email.getText().toString();
+                String pass = makePassword(password.getText().toString());
             }
         });
     }
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
-            
+            return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
