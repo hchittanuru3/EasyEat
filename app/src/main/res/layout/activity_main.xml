@@ -30,78 +30,6 @@
             />
     </LinearLayout>
 
-<<<<<<< HEAD
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Name"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:theme="@android:style/Theme.Light"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/name"/>
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="15dp"
-        android:text="Email"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:theme="@android:style/Theme.Light"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/email"/>
-
-    <TextView
-<<<<<<< HEAD
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteY="122dp"
-        android:layout_marginLeft="36dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline6" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline5"
-        app:layout_constraintGuide_begin="62dp"
-        android:orientation="horizontal" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline6"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
-=======
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="15dp"
-        android:text="Password"
-        android:textSize="17sp"
-        android:layout_marginBottom="5dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-=======
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -149,7 +77,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
->>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -189,9 +116,5 @@
         android:textSize="20dp" />
 
 
-<<<<<<< HEAD
->>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
-=======
->>>>>>> e4b576ec24aee866ff56e4ad6ad5b8e182318b7f
 
 </LinearLayout>
