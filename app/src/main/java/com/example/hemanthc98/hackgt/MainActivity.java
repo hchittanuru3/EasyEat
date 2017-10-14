@@ -11,7 +11,7 @@ import android.widget.EditText;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
     Button register = (Button) findViewById(R.id.register);
     CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox);
