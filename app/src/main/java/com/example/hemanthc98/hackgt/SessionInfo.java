@@ -19,4 +19,10 @@ public class SessionInfo {
     public void setUsername(String str) {
         this.username = str;
     }
+
+    private static SessionInfo instance = new SessionInfo();
+
+    public static SessionInfo getInstance() {
+        return instance;
+    }
 }

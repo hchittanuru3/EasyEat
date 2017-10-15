@@ -36,7 +36,7 @@ public class activitiesScreen extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String finDate = date.getText().toString();
+                final String finDate = date.getText().toString();
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.activities_popup);
                 dialog.setTitle("Add New Activity");
@@ -52,7 +52,11 @@ public class activitiesScreen extends AppCompatActivity {
                     public void onClick(View view) {
                         String act = name.getText().toString();
                         String loc = location.getText().toString();
-                        //APIInterfacer.addScheduleActivity();
+                        String user = SessionInfo.getInstance().getUsername();
+                        String sTime = firstChoice.getSelectedItem().toString();
+                        String eTime = secChoice.getSelectedItem().toString();
+                        APIInterfacer.addScheduleActivity(user, finDate, act, sTime, eTime, loc);
+                        System.out.println("Success");
                         dialog.dismiss();
                     }
                 });

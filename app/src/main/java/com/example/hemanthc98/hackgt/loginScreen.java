@@ -30,6 +30,7 @@ public class loginScreen extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = MainActivity.makePassword(password.getText().toString());
                 if (APIInterfacer.authenticateUser(user, pass)) {
+                    SessionInfo.getInstance().setUsername(user);
                     Intent intent = new Intent(loginScreen.this, activitiesScreen.class);
                     startActivity(intent);
                 } else {
